@@ -4,7 +4,7 @@ import Image from "next/image";
 
 import logo from "@/public/logo.svg";
 import { contacts, paymentsMethods, social } from "./data";
-import Separator from "../ui/separator/Separator";
+import Separator from "../../ui/separator/Separator";
 import Container from "../container/Container";
 
 const Footer = () => {
@@ -15,7 +15,6 @@ const Footer = () => {
           <div className={style.toSide}>
             <div className={style.logo}>
               <Image src={logo} alt="logo" />
-              <p>E MAG store</p>
             </div>
 
             <div className={style.column}>
@@ -69,7 +68,7 @@ const Footer = () => {
             </div>
           </div>
           <Separator type="HORIZONTAL" />
-          <p className={style.copy}>© «E MAG» 2023</p>
+          <p className={style.copy}>© «online magazine» 2023</p>
         </Container>
       </footer>
     </>

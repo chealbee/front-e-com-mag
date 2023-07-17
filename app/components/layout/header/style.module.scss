@@ -1,0 +1,60 @@
+@import "../../../styles/variables.scss";
+
+.header {
+}
+.top {
+  background: $base-color;
+  color: white;
+  padding: 15px 0;
+  ul {
+    padding: 0;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+    li {
+      transition: all 0.3s ease 0s;
+      &:hover {
+        color: #ffcf62;
+      }
+    }
+  }
+}
+
+.bottom {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  background: #ffffff;
+  padding: 14px 10px;
+}
+.cart {
+  display: flex;
+  flex-direction: column;
+  img {
+    margin-bottom: 5px;
+  }
+  color: $BrandBlue;
+}
+
+.botomContainer {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  img {
+    margin-right: 10px;
+  }
+  p {
+    font-size: 15px;
+    width: 30px;
+  }
+}
+
+.input {
+  min-width: 550px;
+  margin: 0 10px;
+}
