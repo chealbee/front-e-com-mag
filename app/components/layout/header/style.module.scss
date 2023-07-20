@@ -13,9 +13,12 @@
     justify-content: center;
     align-items: center;
     li {
-      transition: all 0.3s ease 0s;
-      &:hover {
-        color: #ffcf62;
+      a {
+        color: white;
+        transition: all 0.3s ease 0s;
+        &:hover {
+          color: #ffcf62;
+        }
       }
     }
   }
@@ -33,6 +36,9 @@
     margin-bottom: 5px;
   }
   color: $BrandBlue;
+  a {
+    color: inherit;
+  }
 }
 
 .botomContainer {

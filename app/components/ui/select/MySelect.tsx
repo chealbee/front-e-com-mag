@@ -1,11 +1,22 @@
-import React from "react";
-import Select from "react-select";
+import React, { FC } from "react";
+import Select, { SingleValue } from "react-select";
 import "./style.scss";
-const MySelect = ({
-  options,
-}: {
+
+interface IMySelectProps {
   options: { value: string; label: string }[];
-}) => {
+  value?: SingleValue<{
+    value: string;
+    label: string;
+  }>;
+  onChange?: (
+    e: SingleValue<{
+      value: string;
+      label: string;
+    }>
+  ) => void;
+}
+
+const MySelect: FC<IMySelectProps> = ({ options, onChange, value }) => {
   return (
     <Select
       placeholder="filter by"
@@ -13,6 +24,8 @@ const MySelect = ({
       className="filterSelect"
       isSearchable={false}
       options={options}
+      onChange={onChange}
+      value={value}
     />
   );
 };

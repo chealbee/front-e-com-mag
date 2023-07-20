@@ -29,7 +29,17 @@
   background: $spaceblue;
   color: black;
   &:hover {
-    color: white;
-    background: $BrandBlue;
+    background: #ffe79a;
+    border-color: #ffda60;
+  }
+}
+
+.disabled {
+  background: #f0f0f0;
+  color: #7b7b7b;
+  &:hover {
+    background: #f0f0f0;
+    color: #7b7b7b;
+    cursor: not-allowed;
   }
 }

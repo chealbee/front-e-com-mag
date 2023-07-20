@@ -6,6 +6,7 @@ import logo from "@/public/logo.svg";
 import { contacts, paymentsMethods, social } from "./data";
 import Separator from "../../ui/separator/Separator";
 import Container from "../container/Container";
+import Link from "next/link";
 
 const Footer = () => {
   return (
@@ -21,17 +22,27 @@ const Footer = () => {
               <Separator type="VERTICAL" />
               <ul>
                 <li>magazine</li>
-                <li>Catalog</li>
-                <li>Delivery</li>
+                <li>
+                  <Link href={"catalog"}>Catalog</Link>
+                </li>
+                <li>
+                  <Link href={"delivery"}>Delivery</Link>
+                </li>
               </ul>
             </div>
             <div className={style.column}>
               <Separator type="VERTICAL" />
               <ul>
-                <li>Company</li>
                 <li>About company</li>
-                <li>Feedback</li>
-                <li>Contacts</li>
+                <li>
+                  <Link href={"aboutCompany"}>Company</Link>
+                </li>
+                <li>
+                  <Link href={"contacts"}>Feedback</Link>
+                </li>
+                <li>
+                  <Link href={"contacts"}>Contacts</Link>
+                </li>
               </ul>
             </div>
             <div className={style.column}>

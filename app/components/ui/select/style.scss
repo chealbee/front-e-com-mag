@@ -30,6 +30,11 @@
         transform: rotate(180deg);
       }
     }
+    box-shadow: 0 0 0px transparent !important;
+    transition: all 0.3s ease 0s !important;
+    &:hover {
+      box-shadow: 0 0 9px #def0ff !important;
+    }
   }
   &__placeholder {
     color: #c5c5c5 !important;
@@ -94,7 +99,7 @@
     transition: all 0.3s ease 0s;
     cursor: pointer !important;
     &:hover {
-      background: $plate !important;
+      background: #def0ff !important;
     }
     &--is-selected {
       background: $BrandBlue !important;

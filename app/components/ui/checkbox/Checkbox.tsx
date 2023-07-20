@@ -1,21 +1,50 @@
-import React, { FC, InputHTMLAttributes, useState } from "react";
+"use client";
+
+import React, {
+  ChangeEvent,
+  FC,
+  InputHTMLAttributes,
+  useEffect,
+  useState,
+} from "react";
 import "./style.scss";
 import classNames from "classnames";
 
 interface ICheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
   cn?: string;
+  name: string;
+  isReset?: boolean;
+  onChangeBox?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Checkbox: FC<ICheckboxProps> = ({ cn, label, ...ramainProps }) => {
+const Checkbox: FC<ICheckboxProps> = ({
+  cn,
+  label,
+  onChangeBox,
+  isReset,
+  name,
+  ...ramainProps
+}) => {
   const [selected, setSelected] = useState(false);
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (onChangeBox) onChangeBox(e);
+    if (!isReset) {
+      setSelected(e.target.checked);
+    }
+  };
+  useEffect(() => {
+    if (isReset) setSelected(false);
+  }, [isReset]);
+
   return (
     <div className={classNames("Mycheckbox__wrapper", cn)}>
       <input
         type="checkbox"
         className="Mycheckbox"
-        checked={selected}
-        onChange={(e) => setSelected(e.target.checked)}
+        name={name}
+        onChange={(e) => handleChange(e)}
         {...ramainProps}
       />
       <div

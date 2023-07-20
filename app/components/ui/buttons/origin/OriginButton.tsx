@@ -5,7 +5,7 @@ import classNames from "classnames";
 export interface IOriginButtomProps
   extends ButtonHTMLAttributes<HTMLButtonElement> {
   cn?: string;
-  Buttonstyle?: "normal" | "yelow" | "complite" | "spaced";
+  Buttonstyle?: "normal" | "yelow" | "complite" | "spaced" | "disabled";
 }
 const OriginButton: FC<IOriginButtomProps> = ({
   cn,
@@ -16,10 +16,18 @@ const OriginButton: FC<IOriginButtomProps> = ({
   const isActive = Buttonstyle === "yelow" ? style.active : null;
   const isComplite = Buttonstyle === "complite" ? style.complite : null;
   const isSpaced = Buttonstyle === "spaced" ? style.spaced : null;
+  const isDisabled = Buttonstyle === "disabled" ? style.disabled : null;
 
   return (
     <button
-      className={classNames(style.button, isActive, isComplite, isSpaced, cn)}
+      className={classNames(
+        style.button,
+        isActive,
+        isComplite,
+        isSpaced,
+        isDisabled,
+        cn
+      )}
       {...reaminProps}
     >
       {children}
