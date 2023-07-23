@@ -4,9 +4,8 @@ import Container from "@/app/components/layout/container/Container";
 import CardList from "@/app/components/elements/cardList/CardList";
 
 const options = [
-  { value: "chocolate", label: "Chocolate" },
-  { value: "strawberry", label: "Strawberry" },
-  { value: "vanilla", label: "Vanilla" },
+  { value: "DESC", label: "the price goes down" },
+  { value: "ASC", label: "the price goes up" },
 ];
 
 import "./style.scss";
@@ -19,12 +18,13 @@ import MySelect from "@/app/components/ui/select/MySelect";
 import Pagination from "@/app/components/ui/pagination/Pagination";
 import { useCatalogFilters } from "@/app/store/cart/store";
 import PriceSlider from "@/app/components/elements/priceSlider/PriceSlider";
-import { useUser } from "@/app/store/user/store";
 import axios from "axios";
 import { IProduct } from "@/app/types/product";
 
 export default function Catalog() {
   const [products, setProducts] = useState<IProduct[]>();
+  const [page, setPage] = useState<number>(1);
+  const [productCount, setProductCount] = useState<number>();
   const [brands, setBrands] = useState<{ name: string; id: number }[]>();
   const [types, setTypes] = useState<{ name: string; id: number }[]>();
 
@@ -37,7 +37,7 @@ export default function Catalog() {
   const brand = useCatalogFilters((state) => state.brand);
   const isReset = useCatalogFilters((state) => state.isReset);
   const price = useCatalogFilters((state) => state.price);
-  //   const user = useUser((state) => state.user);
+  const sortBy = useCatalogFilters((state) => state.sortBy);
 
   const resetFilters = () => {
     resetAllFilters();
@@ -52,17 +52,16 @@ export default function Catalog() {
   };
 
   const getProducts = async () => {
-    const data = await axios.post<{ rows: IProduct[] }>(
+    const data = await axios.post<{ rows: IProduct[]; count: number }>(
       "http://localhost:5000/product/getAll",
       {
         typeId: [],
         brandId: [],
-        limit: 3, // за щамовчуванням 10
-        page: 1, // за щамовчуванням 1
+        limit: 6, // за щамовчуванням 10
+        page: page, // за щамовчуванням 1
       }
     );
-    console.log(data.data.rows);
-
+    setProductCount(data.data.count);
     setProducts(data.data.rows);
   };
   const getBrandsandTypes = async () => {
@@ -77,24 +76,28 @@ export default function Catalog() {
     setTypes(types.data);
   };
 
-  const getFilteredProducts = async () => {
+  const getFilteredProducts = async (page?: number) => {
     const Price = [price.from, price.to];
     const Brand = brand?.map((el) => el.id);
     const Type = type?.map((el) => el.id);
 
+    const MYPage = page || 1;
+
     const body = {
+      order: sortBy.value,
       typeId: Type,
       brandId: Brand,
-      limit: 3,
-      page: 1,
+      limit: 6,
+      page: MYPage,
       price: Price,
     };
 
-    const data = await axios.post<{ rows: IProduct[] }>(
+    const data = await axios.post<{ rows: IProduct[]; count: number }>(
       "http://localhost:5000/product/getAll",
       body
     );
     setProducts(data.data.rows);
+    setProductCount(data.data.count);
   };
 
   useEffect(() => {
@@ -102,9 +105,10 @@ export default function Catalog() {
     getBrandsandTypes();
   }, []);
 
-  //   useEffect(() => {
-  //     console.log("rerender");
-  //   }, [asd]);
+  useEffect(() => {
+    console.log("page change");
+    getFilteredProducts(page);
+  }, [page]);
 
   return (
     <div>
@@ -117,9 +121,18 @@ export default function Catalog() {
                 {brand?.map((ell) => (
                   <div className="filterList__filter" key={ell.id}>
                     <span>{ell.name}</span>
-                    <div className="filterList__button">
+                    {/* <div
+                      className="filterList__button"
+                      onClick={() =>
+                        setSortByBrand({
+                          chaked: false,
+                          name: ell.name,
+                          id: ell.id,
+                        })
+                      }
+                    >
                       <div className="filterList__closebutton"></div>
-                    </div>
+                    </div> */}
                   </div>
                 ))}
               </div>
@@ -134,7 +147,16 @@ export default function Catalog() {
                 {type?.map((ell) => (
                   <div className="filterList__filter" key={ell.id}>
                     <span>{ell.name}</span>
-                    <div className="filterList__button">
+                    <div
+                      className="filterList__button"
+                      onClick={() =>
+                        setSortByType({
+                          chaked: false,
+                          name: ell.name,
+                          id: ell.id,
+                        })
+                      }
+                    >
                       <div className="filterList__closebutton"></div>
                     </div>
                   </div>
@@ -164,12 +186,14 @@ export default function Catalog() {
                     <div className="filters__checkboxs">
                       {brands?.length
                         ? brands.map((el) => (
-                            <Checkbox
-                              isReset={isReset}
-                              name={el.name}
-                              label={el.name}
-                              onChangeBox={(e) => bradChange(e, el.id)}
-                            />
+                            <div key={el.id}>
+                              <Checkbox
+                                isReset={isReset}
+                                name={el.name}
+                                label={el.name}
+                                onChangeBox={(e) => bradChange(e, el.id)}
+                              />
+                            </div>
                           ))
                         : null}
                     </div>
@@ -181,12 +205,14 @@ export default function Catalog() {
                     <div className="filters__checkboxs">
                       {types?.length
                         ? types.map((el) => (
-                            <Checkbox
-                              isReset={isReset}
-                              name={el.name}
-                              label={el.name}
-                              onChangeBox={(e) => typeChange(e, el.id)}
-                            />
+                            <div key={el.id}>
+                              <Checkbox
+                                isReset={isReset}
+                                name={el.name}
+                                label={el.name}
+                                onChangeBox={(e) => typeChange(e, el.id)}
+                              />
+                            </div>
                           ))
                         : null}
                     </div>
@@ -199,14 +225,16 @@ export default function Catalog() {
               ]}
             />
             <div className="filters__buttons">
-              <OriginButton onClick={getFilteredProducts}>Aply</OriginButton>
+              <OriginButton onClick={() => getFilteredProducts()}>
+                Aply
+              </OriginButton>
               <OriginButton Buttonstyle="spaced" onClick={resetFilters}>
                 Reset
               </OriginButton>
             </div>
           </div>
           {products?.length ? (
-            <CardList products={products} />
+            <CardList products={products} cn="filteresCardlist" />
           ) : (
             <p className="filters__notmatching">
               Sorry, we don't have any matching products
@@ -214,7 +242,13 @@ export default function Catalog() {
           )}
         </div>
         <div className="catalogPagination">
-          <Pagination />
+          {productCount ? (
+            <Pagination
+              pageCount={productCount}
+              ellPerPage={6}
+              onChnagePage={(page) => setPage(page)}
+            />
+          ) : null}
         </div>
       </Container>
     </div>

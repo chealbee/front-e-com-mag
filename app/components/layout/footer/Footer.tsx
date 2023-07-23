@@ -23,10 +23,10 @@ const Footer = () => {
               <ul>
                 <li>magazine</li>
                 <li>
-                  <Link href={"catalog"}>Catalog</Link>
+                  <Link href={"/catalog"}>Catalog</Link>
                 </li>
                 <li>
-                  <Link href={"delivery"}>Delivery</Link>
+                  <Link href={"/delivery"}>Delivery</Link>
                 </li>
               </ul>
             </div>
@@ -35,13 +35,13 @@ const Footer = () => {
               <ul>
                 <li>About company</li>
                 <li>
-                  <Link href={"aboutCompany"}>Company</Link>
+                  <Link href={"/aboutCompany"}>Company</Link>
                 </li>
                 <li>
-                  <Link href={"contacts"}>Feedback</Link>
+                  <Link href={"/contacts"}>Feedback</Link>
                 </li>
                 <li>
-                  <Link href={"contacts"}>Contacts</Link>
+                  <Link href={"/contacts"}>Contacts</Link>
                 </li>
               </ul>
             </div>

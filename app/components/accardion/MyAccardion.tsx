@@ -28,7 +28,11 @@ const MyAccardion: FC<IMyAccardionProps> = ({ list }) => {
       onChange={(e) => setSelected(e)}
     >
       {list.map((el) => (
-        <AccordionItem uuid={el.label} className="CatalogAcardion__item">
+        <AccordionItem
+          key={el.label}
+          uuid={el.label}
+          className="CatalogAcardion__item"
+        >
           <AccordionItemHeading className="CatalogAcardion__heading">
             <AccordionItemButton className="CatalogAcardion__button">
               <p>{el.label}</p>

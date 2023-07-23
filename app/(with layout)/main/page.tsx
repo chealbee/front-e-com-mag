@@ -10,7 +10,7 @@ const getProducts = async () => {
   return (
     await axios.post<{ rows: IProduct[] }>(
       "http://localhost:5000/product/getAll",
-      { typeId: 1, brandId: 1, limit: 4, page: 1 }
+      { typeId: [], brandId: [], limit: 4, page: 1 }
     )
   ).data;
 };

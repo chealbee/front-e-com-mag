@@ -11,7 +11,7 @@ interface IPriceSliderProps {
   min?: number;
 }
 
-const PriceSlider: FC<IPriceSliderProps> = ({ min = 0, max = 100 }) => {
+const PriceSlider: FC<IPriceSliderProps> = ({ min = 0, max = 800 }) => {
   const setPrice = useCatalogFilters((state) => state.setPrice);
   const price = useCatalogFilters((state) => state.price);
 
@@ -26,10 +26,12 @@ const PriceSlider: FC<IPriceSliderProps> = ({ min = 0, max = 100 }) => {
           styleType="input"
           placeholder={`min: ${min}`}
           cn="Pricesliderinputs"
+          onChange={(e) => {}}
           value={price.from}
         />
         <span>-</span>
         <Input
+          onChange={(e) => {}}
           styleType="input"
           placeholder={`max: ${max}`}
           cn="Pricesliderinputs"

@@ -58,9 +58,11 @@ button::-moz-focus-inner {
 a,
 a:visited {
   text-decoration: none;
+  color: inherit;
 }
 a:hover {
   text-decoration: none;
+  color: inherit;
 }
 ul,
 li {
@@ -79,5 +81,5 @@ h6 {
   font-weight: 400;
 }
 body {
-  background: #fdfeff;
+  background: #e7e8ec;
 }

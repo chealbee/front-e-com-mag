@@ -8,6 +8,7 @@
   box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.1);
   flex: 1 1 23%;
   display: flex;
+  background: #ffffff;
   flex-direction: column;
 }
 .img {
@@ -20,7 +21,7 @@
     height: 100%;
     top: 0;
     left: 0;
-    object-fit: cover;
+    object-fit: contain;
   }
 }
 .heading {

@@ -9,6 +9,8 @@ import Link from "next/link";
 import { useUser } from "@/app/store/user/store";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
+
 const page = () => {
   const [userData, setUserData] = useState({ email: "", password: "" });
   const [err, setErr] = useState(false);
@@ -32,16 +34,17 @@ const page = () => {
           id: number;
         };
       }>("http://localhost:5000/auth/registration", userData);
-      console.log(res.status);
 
       const data = res.data;
       if (res.status) {
         setUser({ token: data.token, ...data.user });
         setErr(false);
+        toast.success("success signin");
       } else {
         setErr(true);
       }
     } catch (error) {
+      toast.error("uncorect email or password");
       setErr(true);
     }
   };

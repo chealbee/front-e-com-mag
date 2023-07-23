@@ -22,7 +22,7 @@ const Input: FC<IInputProps> = ({
     <div className={style.input + " " + cn}>
       <input placeholder="placeholder" className={inputCn} {...reaminProps} />
       {styleType === "search" ? (
-        <Image src={search} alt="search" onClick={() => clickOnSearch} />
+        <Image src={search} alt="search" onClick={clickOnSearch} />
       ) : null}
     </div>
   );

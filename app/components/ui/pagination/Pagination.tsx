@@ -1,24 +1,21 @@
-import React, { useState } from "react";
+import React, { FC } from "react";
 import "./style.scss";
 import ReactPaginate from "react-paginate";
 
-const items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
-
-const Pagination = () => {
-  const [itemOffset, setItemOffset] = useState(0);
-
-  const endOffset = itemOffset + 3;
-  console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-  const currentItems = items.slice(itemOffset, endOffset);
-  const pageCount = Math.ceil(items.length / 3);
-
+interface IPaginationProps {
+  pageCount: number;
+  onChnagePage?: (page: number) => void;
+  ellPerPage: number;
+}
+const Pagination: FC<IPaginationProps> = ({
+  onChnagePage,
+  pageCount,
+  ellPerPage,
+}) => {
   const handlePageClick = (event: any) => {
-    const newOffset = (event.selected * 3) % items.length;
-    console.log(
-      `User requested page number ${event.selected}, which is offset ${newOffset}`
-    );
-    setItemOffset(newOffset);
+    if (onChnagePage) onChnagePage(event.selected + 1);
   };
+
   return (
     <div>
       <ReactPaginate
@@ -34,7 +31,7 @@ const Pagination = () => {
         onPageChange={handlePageClick}
         pageRangeDisplayed={2}
         marginPagesDisplayed={2}
-        pageCount={items.length}
+        pageCount={Math.ceil(pageCount / ellPerPage)}
         previousLabel="< "
         renderOnZeroPageCount={null}
       />

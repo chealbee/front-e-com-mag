@@ -1,10 +1,13 @@
 import { FC, ReactNode } from "react";
 import style from "./style.module.scss";
 
-const Container: FC<{ children: ReactNode }> = ({ children }) => {
+const Container: FC<{ children: ReactNode; cn?: string }> = ({
+  children,
+  cn,
+}) => {
   return (
     <>
-      <div className={style.container}>{children}</div>
+      <div className={style.container + " " + cn}>{children}</div>
     </>
   );
 };

@@ -6,16 +6,19 @@
   &__page {
     transition: all 0.3s ease 0s;
     background: white;
-    padding: 5px;
-    height: 33px;
-    width: 33px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
     border-radius: 3px;
     cursor: pointer;
     color: #5e5e5e;
     font-size: 14px;
+    a {
+      padding: 5px;
+      height: 33px;
+      width: 33px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
     &_active {
       color: white;
       background: $BrandBlue;

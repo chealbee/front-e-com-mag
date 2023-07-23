@@ -1,3 +1,5 @@
+"use client";
+
 import React, { FC, HTMLAttributes, useEffect } from "react";
 
 import style from "./style.module.scss";
@@ -13,6 +15,7 @@ const CardList: FC<ICardListProps> = ({ cn, products, ...remainProps }) => {
     <div className={style.list + " " + cn} {...remainProps}>
       {products.map((ell, i) => (
         <ProductCard key={ell.id} data={ell} />
+        //   <ProductCard key={i} data={ell} />
       ))}
     </div>
   );

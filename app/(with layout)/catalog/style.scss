@@ -62,33 +62,29 @@
   }
   &__filter {
     padding: 10px 20px;
-    padding-right: 6px;
     display: flex;
     align-items: center;
     border-radius: 20px;
     background: #ffffff;
     border: 1px solid #d4d4d4;
-    span {
-      margin-right: 25px;
-    }
 
     transition: all 0.3s ease 0s;
     &:hover {
       background: #e9f1fd;
       border: 1px solid #b1cefa;
-      .filterList {
-        &__button {
-        }
-        &__closebutton {
-          &::before {
-            background: #9e1c1c;
-          }
+      // .filterList {
+      //   &__button {
+      //   }
+      //   &__closebutton {
+      //     &::before {
+      //       background: #9e1c1c;
+      //     }
 
-          &::after {
-            background: #9e1c1c;
-          }
-        }
-      }
+      //     &::after {
+      //       background: #9e1c1c;
+      //     }
+      //   }
+      // }
     }
   }
   &__button {
@@ -169,4 +165,7 @@
   align-items: center;
   margin-top: 30px;
   margin-bottom: 30px;
+}
+.filteresCardlist {
+  justify-content: flex-start;
 }

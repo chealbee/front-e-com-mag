@@ -9,6 +9,7 @@ import Link from "next/link";
 import axios from "axios";
 import { useUser } from "@/app/store/user/store";
 import { useRouter } from "next/navigation";
+import toast, { Toaster } from "react-hot-toast";
 
 const page = () => {
   const [userData, setUserData] = useState({ email: "", password: "" });
@@ -37,9 +38,11 @@ const page = () => {
       const data = res.data;
       setUser({ token: data.token, ...data.user });
       setErr(false);
+      toast.success("success login");
     } catch (error) {
       setErr(true);
       logOut();
+      toast.error("uncorect email or password");
     }
   };
   const loginUser = () => {
@@ -88,6 +91,7 @@ const page = () => {
           </p>
         </div>
       </div>
+      <Toaster />
     </Container>
   );
 };

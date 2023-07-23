@@ -5,7 +5,7 @@
 .top {
   background: $base-color;
   color: white;
-  padding: 15px 0;
+  padding: 20px 0;
   ul {
     padding: 0;
     display: flex;
@@ -63,4 +63,38 @@
 .input {
   min-width: 550px;
   margin: 0 10px;
+}
+.psRelativ {
+  position: relative;
+}
+.searchproducts {
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  padding: 10px;
+  border-radius: 5px;
+  position: absolute;
+  width: 100%;
+  top: 40px;
+  left: 0;
+  gap: 15px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+.searchproduct {
+  transition: all 0.3s ease 0s;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  &:hover {
+    transform: scale(1.02);
+  }
+  font-size: 20px;
+  img {
+    width: 60px;
+    height: 60px;
+  }
+}
+.headersearch {
+  z-index: 1;
+  position: relative;
 }

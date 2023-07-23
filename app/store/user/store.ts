@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { createJSONStorage, persist } from "zustand/middleware";
 
 interface UseCatalogFiltersStore {
   user: { email: string; id: number; token: string } | null;
@@ -22,6 +22,7 @@ export const useUser = create<UseCatalogFiltersStore>()(
     }),
     {
       name: "user",
+      storage: createJSONStorage(() => sessionStorage),
     }
   )
 );

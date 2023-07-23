@@ -24,15 +24,14 @@ const Checkbox: FC<ICheckboxProps> = ({
   onChangeBox,
   isReset,
   name,
+  checked,
   ...ramainProps
 }) => {
   const [selected, setSelected] = useState(false);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (onChangeBox) onChangeBox(e);
-    if (!isReset) {
-      setSelected(e.target.checked);
-    }
+    setSelected(e.target.checked);
   };
   useEffect(() => {
     if (isReset) setSelected(false);
@@ -45,6 +44,7 @@ const Checkbox: FC<ICheckboxProps> = ({
         className="Mycheckbox"
         name={name}
         onChange={(e) => handleChange(e)}
+        checked={selected}
         {...ramainProps}
       />
       <div
