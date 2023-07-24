@@ -6,12 +6,12 @@ import Input from "@/app/components/ui/input/Input";
 import OriginButton from "@/app/components/ui/buttons/origin/OriginButton";
 
 const formInfo = [
-  { name: "name", pl: "name" },
+  { name: "Name", pl: "Name" },
   { name: "Contact phone number", pl: "+38" },
-  { name: "Email", pl: "email" },
+  { name: "Email", pl: "Email" },
 ];
 const contactsInfo = [
-  { name: "Ofice", value: "Kyiv, Pavla Tychyna Avenue, 9A" },
+  { name: "Office", value: "Kyiv, Pavla Tychyna Avenue, 9A" },
   { name: "Storage", value: "Kyiv, Pavla Tychyna Avenue, 9A" },
   { name: "Office hours", value: "Mon-Sun: from 8:00 a.m. to 10:00 p.m" },
   { name: "Our contact phone number", value: "+38(097) 278-55-55" },

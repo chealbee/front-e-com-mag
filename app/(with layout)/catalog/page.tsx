@@ -96,6 +96,7 @@ export default function Catalog() {
       "http://localhost:5000/product/getAll",
       body
     );
+
     setProducts(data.data.rows);
     setProductCount(data.data.count);
   };
@@ -220,7 +221,7 @@ export default function Catalog() {
                 },
                 {
                   label: "price",
-                  ell: <PriceSlider max={800} min={0} />,
+                  ell: <PriceSlider max={10000} min={0} />,
                 },
               ]}
             />

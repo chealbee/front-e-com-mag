@@ -39,10 +39,15 @@ body {
   font-family: "Roboto", sans-serif;
   margin: 0;
 }
-input,
-button,
-textarea {
+input :focus,
+input :active,
+button:focus,
+button:active,
+textarea:focus,
+textarea:active {
   font-family: inherit;
+  outline: none;
+  border: none;
 }
 input::-ms-clear {
   display: none;
