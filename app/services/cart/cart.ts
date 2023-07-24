@@ -42,12 +42,13 @@ const cart = {
     }
   },
 
-  getByName: async (name: string) => {
+  getByName: async (name: string, isLimit = true) => {
     try {
       const data = await axios.post<IProduct[]>(
         "http://localhost:5000/product/allByName",
         {
           name: name,
+          isLimit,
         }
       );
       console.log(data);

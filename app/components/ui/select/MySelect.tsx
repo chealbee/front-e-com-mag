@@ -4,6 +4,7 @@ import "./style.scss";
 
 interface IMySelectProps {
   options: { value: string; label: string }[];
+  placeholder?: string;
   value?: SingleValue<{
     value: string;
     label: string;
@@ -16,10 +17,15 @@ interface IMySelectProps {
   ) => void;
 }
 
-const MySelect: FC<IMySelectProps> = ({ options, onChange, value }) => {
+const MySelect: FC<IMySelectProps> = ({
+  options,
+  onChange,
+  value,
+  placeholder,
+}) => {
   return (
     <Select
-      placeholder="filter by"
+      placeholder={placeholder || "filter by"}
       classNamePrefix="filterSelect"
       className="filterSelect"
       isSearchable={false}

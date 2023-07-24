@@ -33,6 +33,12 @@ const page = () => {
         user: {
           email: string;
           id: number;
+          roles: [
+            {
+              id: number;
+              value: string;
+            }
+          ];
         };
       }>("http://localhost:5000/auth/login", userData);
       const data = res.data;

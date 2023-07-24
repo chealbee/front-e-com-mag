@@ -2,8 +2,28 @@ import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 
 interface UseCatalogFiltersStore {
-  user: { email: string; id: number; token: string } | null;
-  setUser: (user: { email: string; id: number; token: string }) => void;
+  user: {
+    email: string;
+    id: number;
+    token: string;
+    roles: [
+      {
+        id: number;
+        value: string;
+      }
+    ];
+  } | null;
+  setUser: (user: {
+    email: string;
+    id: number;
+    token: string;
+    roles: [
+      {
+        id: number;
+        value: string;
+      }
+    ];
+  }) => void;
   logOut: () => void;
 }
 

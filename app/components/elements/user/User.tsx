@@ -7,12 +7,14 @@ import userIcon from "@/public/userIcon.png";
 import toast, { Toaster } from "react-hot-toast";
 import Separator from "../../ui/separator/Separator";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const User = () => {
   const user = useUser((state) => state.user);
   const logOut = useUser((state) => state.logOut);
   const [isShowe, setIsShowe] = useState(false);
   const router = useRouter();
+  const roles = user?.roles.map((role) => role.value);
 
   const changeShowe = () => {
     if (user?.email && user.id && user.token) setIsShowe((st) => !st);
@@ -23,6 +25,7 @@ const User = () => {
       router.push("/auth/login");
     }
   };
+
   const logOutkUser = () => {
     toast.success("user loguot");
     logOut();
@@ -45,6 +48,11 @@ const User = () => {
         <div className="MYuser__content">
           <p className="MYuser__text">{user?.email}</p>
           <Separator type="HORIZONTAL" />
+          {roles?.includes("ADMIN") ? (
+            <Link className="adminPanel" href={"/adminPanel"}>
+              <p>admin panel</p>
+            </Link>
+          ) : null}
           <div className="MYuser__out" onClick={logOutkUser}>
             log out
             <svg
